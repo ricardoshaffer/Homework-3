@@ -10,116 +10,47 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <!-- FA code and Google Fonts for icons  below-->
   <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-
+  <title>Password Generator</title>
 
 </head>
 <body>
-<p id="randomPassword"></p>
-
-    <form class="form-inline">
-            <label for="inputPassword6">Password Length</label>
-            <input type="text" id="passwordlength" class="form-control mx-sm-3" aria-describedby="Password Length 8-128 Characters">
-            <small id="passwordHelpInline" class="text">
-              Must be 8-128 characters long.
-            </small>
-          </div>
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="varyingLetters">
-          <label class="custom-control-label" for="varyingLetters">Upper & Lowercase</label>
+    <div id="redBox">
+        <div class="alert alert-danger" role="alert"><p id="warningMsg"></p>
         </div>
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="specialCharacters">
-          <label class="custom-control-label" for="specialCharacters">Special Characters</label>
         </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="numbersIncluded">
-            <label class="custom-control-label" for="numbersIncluded">Numbers</label>
-          </div>  
-        <button type="submit" class="btn btn-primary my-1" id="generateKey">Submit</button>
-      </form>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">password length 8-128</span>
+                </div>
+                <input type="text" class="form-control" id="password-length" aria-label="password length must be 8-128 characters long" aria-describedby="password length">
+              </div>
+        </li>
+        <li class="list-group-item">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="upper-lower-case">
+                <label class="custom-control-label" aria-label="check if you would like upper & lowercase letters" for="upper-lower-case">include upper & lowercase letters</label>
+              </div>
+        </li>
+        <li class="list-group-item">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="special-characters">
+                <label class="custom-control-label" aria-label="check if you would like special chracters" for="special-characters">include special characters</label>
+              </div>
+        </li>
+        <li class="list-group-item">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="include-numbers">
+                <label class="custom-control-label" aria-label="check if you would like to include numbers" for="include-numbers">include numbers</label>
+              </div>
+        </li>
+        <li class="list-group-item">
+            <button type="button" class="btn btn-primary btn-lg" id="generate-button"aria-label="click button to generate password">generate password</button>
+        </li>
+      </ul>
 
-
-    <p id="randomPassword"></p>
-    <script type="text/javascript">
-    let varietyLetters;
-    let mixCharacters;
-    let secretKey;
-    let passwordLength;
-    document.addEventListener("DOMContentLoaded", function (event) {
-    let varyingLetters = document.getElementById("varyingLetters");
-    let specialCharacters = document.getElementById("specialCharacters");
-    let includeNumbers = document.getElementById("numbersIncluded");
-
-    varyingLetters.addEventListener('change', function(event){
-        let allowVaryingLetters = event.allowVaryingLetters || event.srcElement;
-        if (allowVaryingLetters.checked){
-            let lettersMixed = ['AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz'];
-            varietyLetters = lettersMixed[Math.floor(Math.random() * lettersMixed.length)];
-            console.log("testing something" + lettersMixed);
-        }
-        else {
-            let upperCaseLetters = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
-            varietyLetters = upperCaseLetters[Math.floor(Math.random() * upperCaseLetters.length)];
-            console.log("something isn't included" + upperCaseLetters);
-        }
-    })
-    specialCharacters.addEventListener('change', function(event){
-        let includeSpecialCharacters = event.includeSpecialCharacters || event.srcElement;
-        if (includeSpecialCharacters.checked){
-            let specCharacters = ['!@#$%&*?'];
-            let mixCharacters = specCharacters[Math.floor(Math.random() * specCharacters.length)];
-            console.log(mixCharacters);
-        }
-        else {
-            false;
-        }
-    })
-    includeNumbers.addEventListener('change', function(event){
-        let includeNumbers = event.includeNumbers || event.srcElement;
-        if (includeNumbers.checked){
-            let includeNumbers = Math.round(Math.random()*10);
-            console.log(includeNumbers);
-        }
-        else {
-            false;
-        }
-    });
-// below is the secion I added most recently
-
-computerChoices = (varietyLetters + mixCharacters + includeNumbers);
-console.log (computerChoices);
-
-    let passwordLength = document.getElementbyId("passwordlength");
-    passwordLength = parseInt(passwordLength);
-        if (passwordLength >= 8 && passwordLength <= 128){
-    // instructions below block out error of 8-128 characters if  it met.
-        var redBox =document.getElementById("redBox");
-        redBox.children[0].style.display = "none";
-        }
-        else{
-        var redBox =document.getElementById("redBox");
-        redBox.children[0].style.display = "inline-block";
-        document.getElementById("warningMsg").innerHTML = "you must select 8-128 characters";
-        };
-
-
-generateKey.addEventListener("click", function(){
-function randomStr(passwordLength, computerChoices) { 
-    for (var i = passwordLength; i > 0; i--) { 
-    secretKey +=  computerChoices[Math.floor(Math.random() * computerChoices.length)]; 
-    } 
-    return secretKey;
-    }
-console.log(randomStr(passwordLength, computerChoices));
-console.log(specialCharacters);
-document.getElementById("randomPassword").innerHTML = (randomStr(passwordLength, computerChoices));
-})
-//end of section most recently added
-
-;})
-
-    </script>
-   
+    <script src="./password.js"></script>   
 </body>
-
+    
 </html>

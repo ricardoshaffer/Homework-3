@@ -67,7 +67,7 @@ varyingCase.addEventListener("change", function(event) {
     console.log("varying numbers has been selected" + numbersYes + includeNumbers);
   });
 
-  // COMBINING ALL STRING VALUES INTO ONE.
+
   
   // THE SUBMIT BUTTON FUNCTION TO WAIT FOR ALL DATA
 
@@ -88,6 +88,7 @@ generateBtn.addEventListener("click", function(event) {
         lengthTest = true;
     };
     if (variableTest == true && lengthTest == true){
+// COMBINING ALL STRING VALUES INTO ONE.
         computerChoices = [].concat(includeLetters, includeCharacters, includeNumbers);
         computerChoicesLength= computerChoices.length;
         function randomStr(reqPasswordLength, computerChoices) { 
