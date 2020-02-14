@@ -15,7 +15,7 @@ let numbersYes =false;
 let variableTest = false;
 let lengthTest = false;
 let computerChoicesLength;
-let secretKey;
+let secretKey ='';
 let computerChoices;
 let lockGen = true;
 
@@ -32,9 +32,8 @@ varyingCase.addEventListener("change", function(event) {
     if (lettersIncluded.checked){
         lettersYes = true;
         includeLetters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-    
+        console.log("varying case has been selected" + lettersYes + includeLetters);
     }
-    console.log("varying case has been selected" + lettersYes + includeLetters);
   });
 
   //EVENT LISTENER FOR INCLUDE CHARACTERS
@@ -44,7 +43,6 @@ varyingCase.addEventListener("change", function(event) {
     if (charactersIncluded.checked){
         charactersYes = true;
         includeCharacters = ["!","@","#","$","%","&","*","?"];
-    
     } else {
         charactersYes = false;
         includeCharacters = null;
@@ -58,7 +56,6 @@ varyingCase.addEventListener("change", function(event) {
     if (numbersIncluded.checked){
     numbersYes = true;
     includeNumbers = ["1","2","3","4","5","6","7","8","9","0"];
-    
     } else {
         numbersYes = false;
         includeNumbers = null;
@@ -93,21 +90,20 @@ if (includeNumbers != null && includeCharacters != null){
         selectionWarning.children[0].style.display = "inline-block";
         document.getElementById("selector-warning").innerHTML = "You must pick at least one option";   
       console.log("error, must pick at least one");
-    } else {
+    } else {variableTest = true;
         console.log("it verified at least 1 of 3");
-        variableTest = true;
     }
     if (reqPasswordLength < 8 || reqPasswordLength > 128  || reqPasswordLength === NaN){
         redBox.children[0].style.display = "inline-block";
         document.getElementById("warningMsg").innerHTML = "you must select 8-128 characters";
     } else {
         lengthTest = true;
-    };
+    }
+    
     if (variableTest == true && lengthTest == true){
-        for ( i = 0; i < reqPasswordLength; i++)  {
-                randomizedLetters = Math.floor(Math.random() * computerChoicesLength);
-                secretKey += computerChoices[randomizedLetters];
-            
+        for ( i =0; i < reqPasswordLength; i++){
+            randomizedLetters = (Math.floor(Math.random()*computerChoicesLength));
+            secretKey += computerChoices[randomizedLetters];
 }
 $("#password-appear p").text(secretKey);
 console.log("secret key: " + secretKey + ". length of options: " + computerChoicesLength + ". selected password Length: " + reqPasswordLength + ". Characters Randomized: " + computerChoices);
