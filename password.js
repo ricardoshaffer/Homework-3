@@ -18,6 +18,7 @@ let computerChoicesLength;
 let secretKey ='';
 let computerChoices;
 let lockGen = true;
+let passwordLength = 0;
 
 //display error if none of three are selected DATA VALIDATION
 
