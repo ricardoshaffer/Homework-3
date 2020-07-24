@@ -3,6 +3,9 @@ Password generator contains 2 files:
 *   index.html
 *   password.js
 
+## Deployment
+*   Deployed using GitHub Pages: https://ricardoshaffer.github.io/Password-Generator/
+
 ## Architecture
 **_Wireframe_**
 *   General stucture follows accessibility guidelines: header, navigation, main, section, footer.
